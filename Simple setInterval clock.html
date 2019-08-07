@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple setInterval clock</title>
+
+  </head>
+  <body>
+	<div id="d1"></div>
+	<script>
+	 
+     var iCount = 0;
+	 function count () {
+        iCount = iCount +1;
+		//var oPara = document.getElementsByName("p");
+		 oPara.textContent = "计时：" + iCount + " 秒";
+	 };
+	 var display;
+	 function start () {
+	 /*
+		var sText = this.firstChild.nodeValue;
+		//var display = setInterval(count, 1000);
+		*/
+			display = setInterval(count, 1000);
+	 };
+	 
+	 function stop () {
+		clearInterval(display);
+	 };
+	 
+	 function clear () {
+		iCount = 0;
+		oPara.textContent = "计时：" + iCount + " 秒";
+	 }
+
+	 var oStart = document.createElement("BUTTON");
+	 oStart.appendChild(document.createTextNode("Start"));
+	 //oStart.setAttribute("onclick", start);
+	 oStart.onclick = start;
+	 var oStop = document.createElement("BUTTON");
+	 oStop.appendChild(document.createTextNode("Stop"));	 
+	 oStop.onclick = stop;
+	 var oClear = document.createElement("BUTTON");
+	 oClear.appendChild(document.createTextNode("Clear"));
+	 oClear.onclick = clear;
+	 var oPara = document.createElement('p');
+	 oPara.textContent = "计时：" + iCount + " 秒";
+
+	 var oDiv = document.getElementById('d1');
+	 oDiv.appendChild(oStart);
+	 oDiv.appendChild(oStop);
+	 oDiv.appendChild(oClear);
+     oDiv.appendChild(oPara);	 
+	 //count();
+	 //var display = setInterval(count, 1000);
+    </script>	
+  </body>
+  
+</html>

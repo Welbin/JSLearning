@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>2-player reaction game</title>
+    <style>
+      /* General styles */
+      html {
+        background-color: white;
+        height: 100%;
+        font-family: sans-serif;
+      }
+      body {
+        height: inherit;
+        background-color: red;
+        margin: 0;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      /* UI Layout */
+      section {
+        width: 100%;
+        height: inherit;
+        padding: 30px;
+      }
+      .topbar {
+        height: 50%;
+        display: flex;
+        justify-content: space-between;
+      }
+      .topbar p, button {
+        margin: 0;
+        font-size: 1.5rem;
+        border: 5px solid;
+        border-radius: 20px;
+        padding: 10px 20px;
+      }
+      .p1, .p2 {
+        align-self: flex-start;
+      }
+      .topbar .p1 {
+        order: 0;
+        border-color: yellow;
+        color: yellow;
+      }
+      .topbar .p2 {
+        order: 2;
+        border-color: cyan;
+        color: cyan;
+      }
+      .topbar .middlebar {
+        order: 1;
+      }
+      .middlebar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+      /* Button-specific styling */
+      button {
+        border: 0;
+        padding: 12.75px 20px;
+        background-color: #ddd;
+        cursor: pointer;
+      }
+      button:hover, button:focus {
+        background-color: #eee;
+      }
+      button:active {
+        background-color: #fff;
+      }
+      /* spinner-specific styling */
+      .spinner {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      .spinner div {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .spinner p {
+        margin: 0;
+        font-size: 10rem;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="spinner"><div>↻</div></div>
+
+    <section class="ui">
+      <div class="topbar">
+        <p class="p1">Player 1: "A"</p>
+        <p class="p2">Player 2: "L"</p>
+        <div class="middlebar">
+          <button class="button">Start game</button>
+          <p class="result"></p>
+        </div>
+      </div>
+    </section>
+    <script>
+	let aSpinner = document.getElementsByClassName("spinner");
+	let spinner = aSpinner[0];
+	let oButton = document.querySelector("BUTTON");
+	oButton.addEventListener('click', fTimeOut);
+	//oButton.onclick = fTimeOut;
+	//oButton.setAttribute("onclick", "fTimeOut");
+	let rAF;
+	let startTime = null;
+	let rotateCount = 0;
+	
+	function fCycle (timestamp) {
+		if (!startTime) {
+			startTime = timestamp;
+		}	
+		rotateCount = (timestamp - startTime) / 3;
+		
+		if (rotateCount>359) {
+			rotateCount %= 360;
+		}
+		spinner.style.transform = 'rotate(' + rotateCount + 'deg)';
+		
+		rAF = requestAnimationFrame(fCycle);
+	}
+	
+	function fRandom () {
+		var nRandom = 5+Math.random()*5;
+		return nRandom;
+	}
+	
+	function fTimeOut () {
+		alert("a");
+		//spinner.visible = false;
+		setTimeout(fCycle, fRandom);
+	}
+	
+    </script>
+  </body>
+</html>

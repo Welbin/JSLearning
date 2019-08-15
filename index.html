@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head
+		<meta charset = 'UFT-8'>
+		<title>My Shopping List</title>
+		<style>
+		.li {
+
+		}
+		.li button {
+			
+		}
+		.input (
+			width: 300px;
+		)
+		</style>
+	</head>
+	<body>
+		<div>
+			<h1>My Shopping List</h1>
+			<p>Enter a new item: 
+			<input class='input' autofocus=true></input>
+			<button>Add Item</button>
+			</p>
+			<ul></ul>
+		</div>
+		<script>
+			let oDiv = document.querySelector('div');
+			let oInput = document.querySelector('input');
+			let oButton = document.querySelector('button');
+			oButton.onclick = fOnClick;
+			let oUl = document.querySelector('ul');
+			
+			function fOnClick () {
+				let sInputValue = oInput.value + ' ';
+				oInput.value = '';
+				
+				let oLi = document.createElement('li');
+				let oSpan = document.createElement('span');
+				oSpan.textContent = sInputValue;
+				let oButtonDelete = document.createElement('button');
+				oButtonDelete.textContent = 'Delete';
+				oLi.appendChild(oSpan);
+				oLi.appendChild(oButtonDelete);
+				oUl.appendChild(oLi);
+				
+				oButtonDelete.onclick = function () {
+					oUl.removeChild(oLi);
+				}
+				
+				oInput.focus();
+			}
+		</script>
+	</body>
+</html>

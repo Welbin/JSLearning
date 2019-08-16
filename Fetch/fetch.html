@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>My test page</title>
+  </head>
+  <body>
+    <p>This is my page</p>
+  </body>
+  <script>
+  /*
+	let promise = fetch("https://img3.doubanio.com/img/musician/large/17180.jpg");
+	let promise2 = promise.then(response => response.blob());
+	let promise3 = promise2.then(myBlob => {
+		let objectURL = URL.createObjectURL(myBlob);
+		let img = document.createElement("img");
+		img.src = objectURL;
+		document.body.appendChild(img);
+	}).catch(e => {
+		alert("There has been a problem with your fetch operation: " + e.message);
+	});
+*/	
+	fetch("https://img3.doubanio.com/img/musician/large/17180.jpg")
+	.then(response => response.blob())
+	.then(myBlob => {
+		let objectURL = URL.createObjectURL(myBlob);
+		let img = document.createElement("img");
+		img.src = objectURL;
+		document.body.appendChild(img);		
+	})
+	.catch(e => {
+		alert("There has been a problem with your fetch operation: " + e.message);
+	});
+	
+	
+  </script>
+</html>
